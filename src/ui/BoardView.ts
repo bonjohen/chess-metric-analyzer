@@ -22,12 +22,24 @@ export class BoardView {
 
     // Parse FEN to get piece placement
     const piecePlacement = fen.split(' ')[0];
+
+    if (!piecePlacement) {
+      console.error('Invalid FEN: missing piece placement');
+      return;
+    }
+
     const ranks = piecePlacement.split('/');
 
     // Create 8x8 grid of squares
     for (let rank = 0; rank < 8; rank++) {
       this.squares[rank] = [];
       const rankData = ranks[rank];
+
+      if (!rankData) {
+        console.error(`Invalid FEN: missing rank ${rank}`);
+        continue;
+      }
+
       let file = 0;
 
       for (const char of rankData) {
@@ -95,7 +107,9 @@ export class BoardView {
       this.container.appendChild(square);
     }
 
-    this.squares[rank][file] = square;
+    if (this.squares[rank]) {
+      this.squares[rank][file] = square;
+    }
   }
 
   /**

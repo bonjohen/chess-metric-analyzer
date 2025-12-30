@@ -64,7 +64,7 @@ export class ProfileEditor {
       const response = await fetch('/src/config/defaultProfiles.json');
       const data = await response.json();
       this.profiles = data.profiles;
-      this.currentProfile = this.profiles.find(p => p.name === data.default) || this.profiles[0];
+      this.currentProfile = this.profiles.find(p => p.name === data.default) || this.profiles[0] || null;
     } catch (error) {
       console.error('Failed to load profiles:', error);
       // Fallback to hardcoded balanced profile
@@ -73,7 +73,7 @@ export class ProfileEditor {
         description: 'Equal weight to all metrics',
         weights: { PV: 1.0, MS: 1.0, AT: 1.0, DF: 1.0 }
       }];
-      this.currentProfile = this.profiles[0];
+      this.currentProfile = this.profiles[0] || null;
     }
   }
 

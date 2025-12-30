@@ -27,7 +27,9 @@ export class SquareOverlay {
     this.overlays = [];
 
     for (let rank = 0; rank < 8; rank++) {
-      this.overlays[rank] = [];
+      const rankArray: HTMLElement[] = [];
+      this.overlays[rank] = rankArray;
+
       for (let file = 0; file < 8; file++) {
         const overlay = document.createElement('div');
         overlay.className = 'square-overlay-item neutral';
@@ -36,7 +38,7 @@ export class SquareOverlay {
         overlay.dataset.intensity = '0';
 
         this.container.appendChild(overlay);
-        this.overlays[rank][file] = overlay;
+        rankArray[file] = overlay;
       }
     }
   }
