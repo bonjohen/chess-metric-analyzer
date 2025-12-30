@@ -176,4 +176,33 @@ export class ArrowLayer {
     const arrows = this.svg.querySelectorAll('.arrow, .arrow-clickable');
     arrows.forEach(arrow => arrow.remove());
   }
+
+  /**
+   * Show arrows
+   */
+  public show(): void {
+    if (this.svg) {
+      this.svg.style.display = 'block';
+    }
+  }
+
+  /**
+   * Hide arrows
+   */
+  public hide(): void {
+    if (this.svg) {
+      this.svg.style.display = 'none';
+    }
+  }
+
+  /**
+   * Set visibility
+   */
+  public setVisible(visible: boolean): void {
+    if (visible) {
+      this.show();
+    } else {
+      this.hide();
+    }
+  }
 }

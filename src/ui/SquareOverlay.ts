@@ -120,4 +120,29 @@ export class SquareOverlay {
       });
     });
   }
+
+  /**
+   * Show overlays
+   */
+  public show(): void {
+    this.container.style.display = 'grid';
+  }
+
+  /**
+   * Hide overlays
+   */
+  public hide(): void {
+    this.container.style.display = 'none';
+  }
+
+  /**
+   * Set visibility
+   */
+  public setVisible(visible: boolean): void {
+    if (visible) {
+      this.show();
+    } else {
+      this.hide();
+    }
+  }
 }

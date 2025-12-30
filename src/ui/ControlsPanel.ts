@@ -4,14 +4,13 @@
  */
 
 export class ControlsPanel {
-  private container: HTMLElement;
-
   // DOM elements
   private fenInput: HTMLInputElement;
   private loadFenBtn: HTMLButtonElement;
   private profileSelect: HTMLSelectElement;
   private perspectiveWhiteBtn: HTMLButtonElement;
   private perspectiveBlackBtn: HTMLButtonElement;
+  private showArrowsCheckbox: HTMLInputElement;
   private analyzeBtn: HTMLButtonElement;
   private stopBtn: HTMLButtonElement;
   private statusDisplay: HTMLElement;
@@ -29,13 +28,15 @@ export class ControlsPanel {
   private onProfileChangeCallback?: (profileName: string) => void;
   private onAnalysisStartCallback?: () => void;
   private onAnalysisStopCallback?: () => void;
+  private onShowArrowsChangeCallback?: (show: boolean) => void;
 
   // State
   private currentPerspective: 'white' | 'black' = 'white';
   private isAnalyzing = false;
 
-  constructor(container: HTMLElement) {
-    this.container = container;
+  constructor(_container: HTMLElement) {
+    // Container parameter kept for API compatibility but not stored
+    // All elements are accessed via document.getElementById
 
     // Get DOM elements
     this.fenInput = document.getElementById('fen-input') as HTMLInputElement;
@@ -43,6 +44,7 @@ export class ControlsPanel {
     this.profileSelect = document.getElementById('profile-select') as HTMLSelectElement;
     this.perspectiveWhiteBtn = document.getElementById('perspective-white') as HTMLButtonElement;
     this.perspectiveBlackBtn = document.getElementById('perspective-black') as HTMLButtonElement;
+    this.showArrowsCheckbox = document.getElementById('show-arrows-checkbox') as HTMLInputElement;
     this.analyzeBtn = document.getElementById('analyze-btn') as HTMLButtonElement;
     this.stopBtn = document.getElementById('stop-btn') as HTMLButtonElement;
 
@@ -119,6 +121,13 @@ export class ControlsPanel {
       }
     });
 
+    // Show arrows checkbox
+    this.showArrowsCheckbox.addEventListener('change', () => {
+      if (this.onShowArrowsChangeCallback) {
+        this.onShowArrowsChangeCallback(this.showArrowsCheckbox.checked);
+      }
+    });
+
     // Analysis controls
     this.analyzeBtn.addEventListener('click', () => this.handleAnalysisStart());
     this.stopBtn.addEventListener('click', () => this.handleAnalysisStop());
@@ -143,7 +152,9 @@ export class ControlsPanel {
     if (parts.length < 4) return false;
 
     // Validate piece placement (first part)
-    const rows = parts[0].split('/');
+    const piecePlacement = parts[0];
+    if (!piecePlacement) return false;
+    const rows = piecePlacement.split('/');
     if (rows.length !== 8) return false;
 
     return true;
@@ -290,6 +301,18 @@ export class ControlsPanel {
 
   public getPerspective(): 'white' | 'black' {
     return this.currentPerspective;
+  }
+
+  public getShowArrows(): boolean {
+    return this.showArrowsCheckbox.checked;
+  }
+
+  public setShowArrows(show: boolean): void {
+    this.showArrowsCheckbox.checked = show;
+  }
+
+  public setOnShowArrowsChange(callback: (show: boolean) => void): void {
+    this.onShowArrowsChangeCallback = callback;
   }
 
   public reset(): void {

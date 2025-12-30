@@ -105,6 +105,7 @@ export class App {
     this.controlsPanel.setOnProfileChange((profileName) => this.handleProfileChange(profileName));
     this.controlsPanel.setOnAnalysisStart(() => this.handleAnalysisStart());
     this.controlsPanel.setOnAnalysisStop(() => this.handleAnalysisStop());
+    this.controlsPanel.setOnShowArrowsChange((show) => this.handleShowArrowsChange(show));
 
     // DrillDown View events
     this.drillDownView.setOnPositionClick((index) => this.handlePositionClick(index));
@@ -210,6 +211,12 @@ export class App {
     console.log('Profile changed:', profileName);
     this.state.currentProfile = profileName;
     // TODO: Trigger re-analysis if analysis is complete
+  }
+
+  private handleShowArrowsChange(show: boolean): void {
+    console.log('Show arrows and overlays changed:', show);
+    this.arrowLayer.setVisible(show);
+    this.squareOverlay.setVisible(show);
   }
 
   private handleAnalysisStart(): void {

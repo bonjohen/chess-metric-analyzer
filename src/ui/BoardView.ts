@@ -229,6 +229,13 @@ export class BoardView {
   }
 
   /**
+   * Get highlighted squares
+   */
+  public getHighlightedSquares(): string[] {
+    return [...this.highlightedSquares];
+  }
+
+  /**
    * Get square element by coordinates
    */
   public getSquare(rank: number, file: number): HTMLElement | undefined {
