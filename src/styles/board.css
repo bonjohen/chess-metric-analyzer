@@ -1,0 +1,187 @@
+/**
+ * Chess Board Styles
+ * Board grid, squares, pieces, coordinates
+ */
+
+/* Board Container */
+.chess-board {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  border: 2px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+/* Board Squares */
+.square {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Light and Dark Squares */
+.square.light {
+  background-color: #f0d9b5;
+}
+
+.square.dark {
+  background-color: #b58863;
+}
+
+/* Square Hover Effect */
+.square:hover {
+  filter: brightness(0.95);
+}
+
+/* Square Coordinates */
+.square-coord {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.square-coord.file {
+  bottom: 2px;
+  right: 4px;
+}
+
+.square-coord.rank {
+  top: 2px;
+  left: 4px;
+}
+
+.square.light .square-coord {
+  color: #b58863;
+}
+
+.square.dark .square-coord {
+  color: #f0d9b5;
+}
+
+/* Chess Pieces */
+.piece {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+
+.piece.dragging {
+  opacity: 0.5;
+}
+
+/* Piece Unicode Characters */
+.piece[data-piece='K']::before { content: '♔'; }
+.piece[data-piece='Q']::before { content: '♕'; }
+.piece[data-piece='R']::before { content: '♖'; }
+.piece[data-piece='B']::before { content: '♗'; }
+.piece[data-piece='N']::before { content: '♘'; }
+.piece[data-piece='P']::before { content: '♙'; }
+.piece[data-piece='k']::before { content: '♚'; }
+.piece[data-piece='q']::before { content: '♛'; }
+.piece[data-piece='r']::before { content: '♜'; }
+.piece[data-piece='b']::before { content: '♝'; }
+.piece[data-piece='n']::before { content: '♞'; }
+.piece[data-piece='p']::before { content: '♟'; }
+
+/* White pieces */
+.piece[data-piece='K']::before,
+.piece[data-piece='Q']::before,
+.piece[data-piece='R']::before,
+.piece[data-piece='B']::before,
+.piece[data-piece='N']::before,
+.piece[data-piece='P']::before {
+  color: #ffffff;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+/* Black pieces */
+.piece[data-piece='k']::before,
+.piece[data-piece='q']::before,
+.piece[data-piece='r']::before,
+.piece[data-piece='b']::before,
+.piece[data-piece='n']::before,
+.piece[data-piece='p']::before {
+  color: #000000;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+/* Square Highlights */
+.square.selected {
+  background-color: rgba(255, 255, 0, 0.4) !important;
+}
+
+.square.legal-move::after {
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.square.legal-capture::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Responsive Board Sizing */
+@media (max-width: 1400px) {
+  .chess-board {
+    width: 500px;
+    height: 500px;
+  }
+
+  .piece {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .chess-board {
+    width: 450px;
+    height: 450px;
+  }
+
+  .piece {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .chess-board {
+    width: 400px;
+    height: 400px;
+  }
+
+  .piece {
+    font-size: 32px;
+  }
+}

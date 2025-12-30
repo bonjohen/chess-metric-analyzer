@@ -1,0 +1,32 @@
+# Test positions for chess metric analyzer
+# Format: FEN | Description
+
+# Starting position
+rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 | Starting position
+
+# After 1.e4
+rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1 | After 1.e4
+
+# After 1.e4 e5
+rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2 | After 1.e4 e5
+
+# Scholar's Mate position (before mate)
+r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4 | Scholar's Mate threat
+
+# Simple tactical position - fork opportunity
+rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3 | Fork opportunity
+
+# Endgame - King and Pawn vs King
+8/8/8/4k3/8/8/4P3/4K3 w - - 0 1 | K+P vs K endgame
+
+# Endgame - Rook endgame
+8/8/8/3k4/8/3K4/3R4/8 w - - 0 1 | Rook endgame
+
+# Middlegame - Open position
+r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 8 | Open middlegame
+
+# Closed position
+rnbqkbnr/ppp2ppp/3p4/4p3/4P3/3P4/PPP2PPP/RNBQKBNR w KQkq - 0 3 | Closed position
+
+# Tactical - Pin
+r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3 | Pin on f7

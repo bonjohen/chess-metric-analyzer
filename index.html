@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Chess Metric Analyzer - Transparent, metric-driven chess analysis tool" />
+    <title>Chess Metric Analyzer</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Main Layout -->
+      <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+          <h1>Chess Metric Analyzer</h1>
+          <div class="header-status">
+            <span id="depth-indicator">Depth: 0/7</span>
+            <span id="computation-status">Ready</span>
+          </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+          <!-- Left Panel: Controls -->
+          <aside class="controls-panel">
+            <section class="control-section">
+              <h2>Position</h2>
+              <div class="control-group">
+                <label for="fen-input">FEN:</label>
+                <input
+                  type="text"
+                  id="fen-input"
+                  placeholder="Enter FEN or use starting position"
+                  value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+                />
+                <button id="load-fen-btn" class="btn btn-primary">Load Position</button>
+              </div>
+            </section>
+
+            <section class="control-section">
+              <h2>Analysis Settings</h2>
+              <div class="control-group">
+                <label for="profile-select">Profile:</label>
+                <select id="profile-select">
+                  <option value="balanced">Balanced</option>
+                  <option value="aggressive">Aggressive</option>
+                  <option value="defensive">Defensive</option>
+                  <option value="positional">Positional</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+
+              <div class="control-group">
+                <label for="perspective-toggle">Perspective:</label>
+                <div class="toggle-group">
+                  <button id="perspective-white" class="btn btn-toggle active">White</button>
+                  <button id="perspective-black" class="btn btn-toggle">Black</button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <button id="analyze-btn" class="btn btn-primary btn-large">Analyze Position</button>
+                <button id="stop-btn" class="btn btn-secondary" disabled>Stop</button>
+              </div>
+            </section>
+
+            <section class="control-section">
+              <h2>Metrics</h2>
+              <div id="metrics-display" class="metrics-grid">
+                <div class="metric-item">
+                  <span class="metric-label">PV (Material):</span>
+                  <span class="metric-value" id="metric-pv">--</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">MS (Mobility):</span>
+                  <span class="metric-value" id="metric-ms">--</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">AT (Attack):</span>
+                  <span class="metric-value" id="metric-at">--</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">DF (Defense):</span>
+                  <span class="metric-value" id="metric-df">--</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="control-section">
+              <button id="properties-btn" class="btn btn-secondary">Properties & Weights</button>
+            </section>
+          </aside>
+
+          <!-- Center: Chess Board -->
+          <div class="board-container">
+            <div id="chess-board" class="chess-board">
+              <!-- Board will be rendered here by BoardView.ts -->
+              <div id="square-overlay" class="square-overlay">
+                <!-- Square coloring overlays will be rendered here by SquareOverlay.ts -->
+              </div>
+              <div id="arrow-layer" class="arrow-layer">
+                <!-- SVG arrows will be rendered here by ArrowLayer.ts -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Drill-Down / History -->
+          <aside class="drilldown-panel">
+            <h2>Position History</h2>
+            <div id="drilldown-container" class="drilldown-container">
+              <p class="empty-state">Click an arrow to drill down into a position</p>
+            </div>
+          </aside>
+        </main>
+
+        <!-- Properties Modal (hidden by default) -->
+        <div id="properties-modal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Properties & Weights</h2>
+              <button id="close-modal-btn" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+              <!-- Profile Editor will be rendered here -->
+              <div id="profile-editor"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Application Script -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+

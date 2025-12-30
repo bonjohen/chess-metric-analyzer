@@ -1,0 +1,168 @@
+/**
+ * Arrow Layer Styles
+ * SVG arrows showing candidate moves
+ * Thickness = sequence rank (thick=1st, medium=2nd, thin=3rd)
+ */
+
+/* Arrow Layer Container */
+.arrow-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.arrow-layer svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Arrow Styles */
+.arrow {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Arrow Thickness by Sequence Rank
+   Square width = 75px (600px / 8)
+   Rank 1: 20% = 15px
+   Rank 2: 10% = 7.5px
+   Rank 3: 5% = 3.75px
+*/
+.arrow.rank-1 {
+  stroke-width: 15;
+}
+
+.arrow.rank-2 {
+  stroke-width: 7.5;
+}
+
+.arrow.rank-3 {
+  stroke-width: 3.75;
+}
+
+/* Arrow Opacity by Ply Depth */
+.arrow.ply-1 {
+  opacity: 0.8;
+}
+
+.arrow.ply-2 {
+  opacity: 0.6;
+}
+
+.arrow.ply-3 {
+  opacity: 0.4;
+}
+
+/* Arrow Colors - Single Color */
+.arrow {
+  stroke: #4a90e2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.arrow.hover {
+  stroke: #4a90e2;
+  opacity: 1.0 !important;
+}
+
+/* Arrow Markers (arrowheads) */
+.arrow-marker {
+  fill: #4a90e2;
+}
+
+.arrow-marker.hover {
+  fill: #4a90e2;
+}
+
+/* Remove Best Move Highlight - all arrows same color */
+.arrow.best-move {
+  stroke: #4a90e2;
+}
+
+.arrow.best-move .arrow-marker {
+  fill: #4a90e2;
+}
+
+/* Interactive Arrow Overlay (for click detection) */
+.arrow-clickable {
+  stroke: transparent;
+  stroke-width: 20;
+  fill: none;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.arrow-clickable:hover + .arrow {
+  stroke: #357abd;
+  opacity: 1.0;
+}
+
+/* Animation for Progressive Updates */
+@keyframes arrow-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: var(--arrow-opacity);
+    transform: scale(1);
+  }
+}
+
+.arrow.new {
+  animation: arrow-appear 0.3s ease-out;
+}
+
+/* Arrow Labels (optional - for debugging) */
+.arrow-label {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #333;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Responsive Arrow Thickness */
+@media (max-width: 1400px) {
+  /* Board: 500px, Square: 62.5px */
+  .arrow.rank-1 {
+    stroke-width: 12.5; /* 20% of 62.5px */
+  }
+  .arrow.rank-2 {
+    stroke-width: 6.25; /* 10% of 62.5px */
+  }
+  .arrow.rank-3 {
+    stroke-width: 3.125; /* 5% of 62.5px */
+  }
+}
+
+@media (max-width: 1200px) {
+  /* Board: 450px, Square: 56.25px */
+  .arrow.rank-1 {
+    stroke-width: 11.25; /* 20% of 56.25px */
+  }
+  .arrow.rank-2 {
+    stroke-width: 5.625; /* 10% of 56.25px */
+  }
+  .arrow.rank-3 {
+    stroke-width: 2.8125; /* 5% of 56.25px */
+  }
+}
+
+@media (max-width: 900px) {
+  /* Board: 400px, Square: 50px */
+  .arrow.rank-1 {
+    stroke-width: 10; /* 20% of 50px */
+  }
+  .arrow.rank-2 {
+    stroke-width: 5; /* 10% of 50px */
+  }
+  .arrow.rank-3 {
+    stroke-width: 2.5; /* 5% of 50px */
+  }
+}

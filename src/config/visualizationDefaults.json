@@ -1,0 +1,40 @@
+{
+  "arrows": {
+    "thickness": {
+      "first": 8,
+      "second": 5,
+      "third": 3
+    },
+    "opacity": {
+      "ply1": 1.0,
+      "ply2": 0.7,
+      "ply3": 0.5
+    },
+    "color": {
+      "default": "#4A90E2",
+      "hover": "#357ABD"
+    }
+  },
+  "squares": {
+    "colors": {
+      "favorable": "#4CAF50",
+      "unfavorable": "#F44336",
+      "neutral": "#FFFFFF"
+    },
+    "intensity": {
+      "min": 0.1,
+      "max": 0.8,
+      "plyMultiplier": 0.1
+    }
+  },
+  "board": {
+    "lightSquare": "#F0D9B5",
+    "darkSquare": "#B58863",
+    "highlightColor": "#FFFF00",
+    "highlightOpacity": 0.4
+  },
+  "animation": {
+    "duration": 300,
+    "easing": "ease-in-out"
+  }
+}

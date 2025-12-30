@@ -1,0 +1,55 @@
+{
+  "positions": [
+    {
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "description": "Starting position",
+      "metrics": {
+        "PV_white": 39,
+        "PV_black": 39,
+        "MS_white": 20,
+        "MS_black": 20,
+        "AT_white": 0,
+        "AT_black": 0,
+        "DF_white": 0,
+        "DF_black": 0
+      },
+      "notes": "Symmetric starting position. PV = 8 pawns (8) + 2 knights (6) + 2 bishops (6) + 2 rooks (10) + 1 queen (9) = 39. MS = 20 legal moves each."
+    },
+    {
+      "fen": "8/8/8/4k3/8/8/4P3/4K3 w - - 0 1",
+      "description": "K+P vs K endgame",
+      "metrics": {
+        "PV_white": 1,
+        "PV_black": 0,
+        "MS_white": 6,
+        "MS_black": 8,
+        "AT_white": 0,
+        "AT_black": 0,
+        "DF_white": 0,
+        "DF_black": 0
+      },
+      "notes": "White has 1 pawn. Kings have mobility but no attacks/defenses. Black king has more mobility (8 squares) than white king (6 squares, blocked by pawn)."
+    },
+    {
+      "fen": "8/8/8/3k4/8/3K4/3R4/8 w - - 0 1",
+      "description": "Rook endgame",
+      "metrics": {
+        "PV_white": 5,
+        "PV_black": 0,
+        "MS_white": 22,
+        "MS_black": 8,
+        "AT_white": 0,
+        "AT_black": 0,
+        "DF_white": 0,
+        "DF_black": 0
+      },
+      "notes": "White has rook (5 points). Rook has high mobility (14 squares) + king (8 squares) = 22. Black king has 8 squares."
+    }
+  ],
+  "notes": [
+    "These are baseline expected values for testing metric calculation.",
+    "Actual MS values may vary slightly depending on exact legal move generation.",
+    "AT and DF values depend on attack/defense detection implementation.",
+    "Use these as reference points, not absolute truth - verify with manual calculation."
+  ]
+}

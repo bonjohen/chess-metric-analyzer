@@ -1,0 +1,45 @@
+{
+  "profiles": [
+    {
+      "name": "Balanced",
+      "description": "Equal weight to all metrics",
+      "weights": {
+        "PV": 1.0,
+        "MS": 1.0,
+        "AT": 1.0,
+        "DF": 1.0
+      }
+    },
+    {
+      "name": "Aggressive",
+      "description": "Emphasizes attack and mobility",
+      "weights": {
+        "PV": 0.8,
+        "MS": 1.5,
+        "AT": 2.0,
+        "DF": 0.5
+      }
+    },
+    {
+      "name": "Defensive",
+      "description": "Emphasizes material preservation and defense",
+      "weights": {
+        "PV": 2.0,
+        "MS": 0.5,
+        "AT": 0.5,
+        "DF": 1.5
+      }
+    },
+    {
+      "name": "Positional",
+      "description": "Emphasizes mobility and defense",
+      "weights": {
+        "PV": 0.8,
+        "MS": 1.8,
+        "AT": 0.7,
+        "DF": 1.5
+      }
+    }
+  ],
+  "default": "Balanced"
+}
