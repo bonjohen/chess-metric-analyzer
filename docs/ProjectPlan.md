@@ -116,7 +116,7 @@ This project is currently in the **setup phase** with a complete specification (
   - Renders starting position with mock data
   - Console logging for debugging
 
-### 2.4 Control & Configuration UI (NOT STARTED)
+### 2.4 Control & Configuration UI (IN PROGRESS)
 - [ ] **src/ui/ControlsPanel.ts** - Main controls
   - FEN input field
   - Perspective toggle (White/Black)
@@ -124,11 +124,22 @@ This project is currently in the **setup phase** with a complete specification (
   - Depth indicator display
   - Start/stop analysis button
 
-- [ ] **src/ui/ProfileEditor.ts** - Properties panel
-  - Metric weight sliders (PV, MS, AT, DF)
-  - Piece value editors
-  - Profile save/load
-  - Visualization tuning controls
+- [x] **src/ui/ProfileEditor.ts** - Properties panel ✅
+  - Metric weight sliders (PV, MS, AT, DF) with real-time value display
+  - Piece value editors (Pawn, Knight, Bishop, Rook, Queen, King)
+  - Profile selection with 5 preset profiles:
+    - **Balanced**: PV 1.0, MS 1.0, AT 1.0, DF 1.0
+    - **Aggressive**: PV 0.8, MS 1.5, AT 2.0, DF 0.5
+    - **Defensive**: PV 2.0, MS 0.5, AT 0.5, DF 1.5
+    - **Positional**: PV 0.8, MS 1.8, AT 0.7, DF 1.5
+    - **Custom**: PV 0.5, MS 1.0, AT 3.0, DF 1.0 (ultra-aggressive)
+  - Profile save/load functionality
+  - Visualization tuning controls:
+    - Arrow opacity by ply (ply 1, 2, 3)
+    - Square color intensity (min, max)
+  - Modal integration with open/close functionality
+  - Loads configuration from JSON files
+  - Callback support for profile changes
 
 - [ ] **src/ui/DrillDownView.ts** - Multi-board drill-down
   - Display parent boards

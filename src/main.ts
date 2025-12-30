@@ -13,6 +13,7 @@ import './styles/overlays.css';
 import { BoardView } from './ui/BoardView';
 import { ArrowLayer } from './ui/ArrowLayer';
 import { SquareOverlay } from './ui/SquareOverlay';
+import { ProfileEditor } from './ui/ProfileEditor';
 
 // Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const boardContainer = document.getElementById('chess-board');
   const arrowContainer = document.getElementById('arrow-layer');
   const overlayContainer = document.getElementById('square-overlay');
+  const profileEditorContainer = document.getElementById('profile-editor');
+  const propertiesModal = document.getElementById('properties-modal');
+  const propertiesBtn = document.getElementById('properties-btn');
+  const closeModalBtn = document.getElementById('close-modal-btn');
 
   if (!boardContainer || !arrowContainer || !overlayContainer) {
     console.error('Required containers not found in DOM');
@@ -40,6 +45,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize square overlay with mock coloring
   const squareOverlay = new SquareOverlay(overlayContainer);
   squareOverlay.renderMockOverlays();
+
+  // Initialize profile editor
+  if (profileEditorContainer) {
+    const profileEditor = new ProfileEditor(profileEditorContainer);
+    profileEditor.render();
+
+    // Set up profile change callback
+    profileEditor.setOnProfileChange((profile) => {
+      console.log('Profile changed:', profile);
+      // TODO: Trigger re-analysis with new profile
+    });
+  }
+
+  // Set up modal controls
+  if (propertiesBtn && propertiesModal && closeModalBtn) {
+    propertiesBtn.addEventListener('click', () => {
+      propertiesModal.style.display = 'flex';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      propertiesModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    propertiesModal.addEventListener('click', (e) => {
+      if (e.target === propertiesModal) {
+        propertiesModal.style.display = 'none';
+      }
+    });
+  }
 
   console.log('Chess Metric Analyzer - Ready!');
 });

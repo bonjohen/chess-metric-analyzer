@@ -67,8 +67,10 @@ export class SquareOverlay {
     // Reset all overlays to neutral
     this.overlays.forEach(row => {
       row.forEach(overlay => {
-        overlay.className = 'square-overlay-item neutral';
-        overlay.dataset.intensity = '0';
+        if (overlay) {
+          overlay.className = 'square-overlay-item neutral';
+          overlay.dataset.intensity = '0';
+        }
       });
     });
 
@@ -109,8 +111,10 @@ export class SquareOverlay {
   public clear(): void {
     this.overlays.forEach(row => {
       row.forEach(overlay => {
-        overlay.className = 'square-overlay-item neutral';
-        overlay.dataset.intensity = '0';
+        if (overlay) {
+          overlay.className = 'square-overlay-item neutral';
+          overlay.dataset.intensity = '0';
+        }
       });
     });
   }
