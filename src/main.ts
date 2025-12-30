@@ -10,10 +10,10 @@ import './styles/arrows.css';
 import './styles/overlays.css';
 
 // Import UI components
-import { BoardView } from './ui/BoardView';
-import { ArrowLayer } from './ui/ArrowLayer';
-import { SquareOverlay } from './ui/SquareOverlay';
-import { ProfileEditor } from './ui/ProfileEditor';
+import { BoardView } from './ui/boardView';
+import { ArrowLayer } from './ui/arrowLayer';
+import { SquareOverlay } from './ui/squareOverlay';
+import { ProfileEditor } from './ui/profileEditor';
 
 // Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {

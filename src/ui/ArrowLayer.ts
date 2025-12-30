@@ -4,13 +4,6 @@
  * Thickness = sequence rank (thick=1st, medium=2nd, thin=3rd)
  */
 
-interface Arrow {
-  from: { rank: number; file: number };
-  to: { rank: number; file: number };
-  rank: 1 | 2 | 3; // Sequence rank (thickness)
-  ply: 1 | 2 | 3; // Ply depth (opacity)
-  isBest?: boolean;
-}
 
 export class ArrowLayer {
   private container: HTMLElement;
