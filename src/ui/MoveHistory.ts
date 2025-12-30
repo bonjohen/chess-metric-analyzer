@@ -66,7 +66,7 @@ export class MoveHistory {
       html += `<button class="move-item white-move" data-index="${i}">`;
       html += `${whiteMove.san}`;
       if (whiteMove.captured) {
-        html += `<span class="capture-indicator">×</span>`;
+        html += `<span class="capture-indicator">x</span>`;
       }
       html += `</button>`;
 
@@ -75,7 +75,7 @@ export class MoveHistory {
         html += `<button class="move-item black-move" data-index="${i + 1}">`;
         html += `${blackMove.san}`;
         if (blackMove.captured) {
-          html += `<span class="capture-indicator">×</span>`;
+          html += `<span class="capture-indicator">x</span>`;
         }
         html += `</button>`;
       }
