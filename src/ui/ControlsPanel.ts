@@ -143,7 +143,7 @@ export class ControlsPanel {
     if (parts.length < 4) return false;
 
     // Validate piece placement (first part)
-    const rows = parts[0].split('/');
+    const rows = (parts[0] ?? '').split('/');
     if (rows.length !== 8) return false;
 
     return true;
