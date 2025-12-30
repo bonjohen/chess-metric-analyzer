@@ -9,7 +9,7 @@ import { SquareOverlay } from './ui/squareOverlay';
 import { ControlsPanel } from './ui/controlsPanel';
 import { DrillDownView, Position } from './ui/drillDownView';
 import { ProfileEditor } from './ui/profileEditor';
-import { MoveHistory } from './ui/MoveHistory';
+import { MoveHistory } from './ui/moveHistory';
 import { ChessGame } from './models/chessGame';
 
 interface AppState {
