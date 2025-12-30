@@ -9,72 +9,26 @@ import './styles/board.css';
 import './styles/arrows.css';
 import './styles/overlays.css';
 
-// Import UI components
-import { BoardView } from './ui/BoardView';
-import { ArrowLayer } from './ui/ArrowLayer';
-import { SquareOverlay } from './ui/SquareOverlay';
-import { ProfileEditor } from './ui/ProfileEditor';
+// Import application controller
+import { App } from './app';
 
 // Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Chess Metric Analyzer - Initializing...');
+  console.log('Chess Metric Analyzer - Starting...');
 
-  // Get container elements
-  const boardContainer = document.getElementById('chess-board');
-  const arrowContainer = document.getElementById('arrow-layer');
-  const overlayContainer = document.getElementById('square-overlay');
-  const profileEditorContainer = document.getElementById('profile-editor');
-  const propertiesModal = document.getElementById('properties-modal');
-  const propertiesBtn = document.getElementById('properties-btn');
-  const closeModalBtn = document.getElementById('close-modal-btn');
+  try {
+    // Initialize the application controller
+    // The App class handles all component initialization and coordination
+    const app = new App();
 
-  if (!boardContainer || !arrowContainer || !overlayContainer) {
-    console.error('Required containers not found in DOM');
-    return;
+    // Expose app instance to window for debugging (optional)
+    if (typeof window !== 'undefined') {
+      (window as any).chessApp = app;
+    }
+
+    console.log('Chess Metric Analyzer - Ready!');
+    console.log('App instance available at window.chessApp for debugging');
+  } catch (error) {
+    console.error('Failed to initialize Chess Metric Analyzer:', error);
   }
-
-  // Initialize board view with starting position
-  const startingFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
-  const boardView = new BoardView(boardContainer);
-  boardView.render(startingFEN);
-
-  // Initialize arrow layer with mock arrows
-  const arrowLayer = new ArrowLayer(arrowContainer);
-  arrowLayer.renderMockArrows();
-
-  // Initialize square overlay with mock coloring
-  const squareOverlay = new SquareOverlay(overlayContainer);
-  squareOverlay.renderMockOverlays();
-
-  // Initialize profile editor
-  if (profileEditorContainer) {
-    const profileEditor = new ProfileEditor(profileEditorContainer);
-    profileEditor.render();
-
-    // Set up profile change callback
-    profileEditor.setOnProfileChange((profile) => {
-      console.log('Profile changed:', profile);
-      // TODO: Trigger re-analysis with new profile
-    });
-  }
-
-  // Set up modal controls
-  if (propertiesBtn && propertiesModal && closeModalBtn) {
-    propertiesBtn.addEventListener('click', () => {
-      propertiesModal.style.display = 'flex';
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      propertiesModal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside
-    propertiesModal.addEventListener('click', (e) => {
-      if (e.target === propertiesModal) {
-        propertiesModal.style.display = 'none';
-      }
-    });
-  }
-
-  console.log('Chess Metric Analyzer - Ready!');
 });

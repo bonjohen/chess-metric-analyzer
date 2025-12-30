@@ -6,6 +6,9 @@
 export class BoardView {
   private container: HTMLElement;
   private squares: HTMLElement[][] = [];
+  private selectedSquare: string | null = null;
+  private highlightedSquares: string[] = [];
+  private onSquareClickCallback?: (square: string) => void;
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -116,23 +119,113 @@ export class BoardView {
    * Handle square click
    */
   private onSquareClick(rank: number, file: number): void {
-    const square = this.squares[rank]?.[file];
-    if (!square) return;
+    const squareName = this.coordsToSquare(rank, file);
 
-    console.log(`Square clicked: ${String.fromCharCode(97 + file)}${8 - rank}`);
+    if (this.onSquareClickCallback) {
+      this.onSquareClickCallback(squareName);
+    }
+  }
 
-    // Toggle selection (for visual feedback)
-    const wasSelected = square.classList.contains('selected');
+  /**
+   * Convert rank/file coordinates to square name (e.g., "e4")
+   */
+  private coordsToSquare(rank: number, file: number): string {
+    return `${String.fromCharCode(97 + file)}${8 - rank}`;
+  }
 
-    // Clear all selections
+  /**
+   * Convert square name to rank/file coordinates
+   */
+  private squareToCoords(square: string): { rank: number; file: number } {
+    const file = square.charCodeAt(0) - 97; // a=0, b=1, etc.
+    const rank = 8 - parseInt(square.charAt(1)); // 8=0, 7=1, etc.
+    return { rank, file };
+  }
+
+  /**
+   * Set callback for square clicks
+   */
+  public setOnSquareClick(callback: (square: string) => void): void {
+    this.onSquareClickCallback = callback;
+  }
+
+  /**
+   * Highlight a square as selected
+   */
+  public selectSquare(square: string | null): void {
+    // Clear previous selection
+    this.clearSelection();
+
+    if (square) {
+      this.selectedSquare = square;
+      const { rank, file } = this.squareToCoords(square);
+      const squareElement = this.squares[rank]?.[file];
+      if (squareElement) {
+        squareElement.classList.add('selected');
+      }
+    } else {
+      this.selectedSquare = null;
+    }
+  }
+
+  /**
+   * Highlight legal move destinations
+   */
+  public highlightMoves(squares: string[]): void {
+    // Clear previous highlights
+    this.clearHighlights();
+
+    this.highlightedSquares = squares;
+    squares.forEach(square => {
+      const { rank, file } = this.squareToCoords(square);
+      const squareElement = this.squares[rank]?.[file];
+      if (squareElement) {
+        squareElement.classList.add('legal-move');
+
+        // Add a move indicator dot
+        const hasPiece = squareElement.querySelector('.piece');
+        if (hasPiece) {
+          squareElement.classList.add('capture-move');
+        } else {
+          const dot = document.createElement('div');
+          dot.className = 'move-indicator';
+          squareElement.appendChild(dot);
+        }
+      }
+    });
+  }
+
+  /**
+   * Clear selection highlighting
+   */
+  public clearSelection(): void {
     this.squares.forEach(row => {
       row.forEach(sq => sq.classList.remove('selected'));
     });
+    this.selectedSquare = null;
+  }
 
-    // Select this square if it wasn't selected
-    if (!wasSelected) {
-      square.classList.add('selected');
-    }
+  /**
+   * Clear move highlighting
+   */
+  public clearHighlights(): void {
+    this.squares.forEach(row => {
+      row.forEach(sq => {
+        sq.classList.remove('legal-move', 'capture-move');
+        const indicator = sq.querySelector('.move-indicator');
+        if (indicator) {
+          indicator.remove();
+        }
+      });
+    });
+    this.highlightedSquares = [];
+  }
+
+  /**
+   * Get selected square
+   */
+  public getSelectedSquare(): string | null {
+    return this.selectedSquare;
   }
 
   /**

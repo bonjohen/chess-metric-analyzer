@@ -16,7 +16,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "chess.js": "^1.0.0-beta.8",
+    "chess.js": "^1.4.0",
     "idb": "^8.0.0"
   },
   "devDependencies": {
