@@ -11,11 +11,6 @@ import './styles/overlays.css';
 
 // Import application controller
 import { App } from './app';
-// Import UI components
-// import { boardView } from './ui/boardView';
-// import { arrowLayer } from './ui/arrowLayer';
-// import { squareOverlay } from './ui/squareOverlay';
-// import { profileEditor } from './ui/profileEditor';
 
 // Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
