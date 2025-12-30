@@ -133,16 +133,12 @@ export class DrillDownView {
 
   private renderMiniBoard(container: HTMLElement, fen: string): void {
     // Parse FEN and render mini board
-    const piecePlacement = fen.split(' ')[0];
-    if (!piecePlacement) return;
-
+    const piecePlacement = fen.split(' ')[0] || '';
     const rows = piecePlacement.split('/');
 
     // Create 8x8 grid
     for (let rank = 0; rank < 8; rank++) {
-      const row = rows[rank];
-      if (!row) continue;
-
+      const row = rows[rank] ?? '';
       let file = 0;
 
       for (const char of row) {
@@ -251,10 +247,11 @@ export class DrillDownView {
     return this.positions;
   }
 
-  public getCurrentPosition(): Position | null {
+  public getCurrentPosition(): Position | undefined {
     if (this.currentIndex >= 0 && this.currentIndex < this.positions.length) {
-      return this.positions[this.currentIndex] || null;
+      const position = this.positions[this.currentIndex];
+      return position;
     }
-    return null;
+    return undefined;
   }
 }
