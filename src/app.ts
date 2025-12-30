@@ -3,14 +3,14 @@
  * Coordinates all UI components and manages application state
  */
 
-import { BoardView } from './ui/BoardView';
-import { ArrowLayer } from './ui/ArrowLayer';
-import { SquareOverlay } from './ui/SquareOverlay';
-import { ControlsPanel } from './ui/ControlsPanel';
-import { DrillDownView, Position } from './ui/DrillDownView';
-import { ProfileEditor } from './ui/ProfileEditor';
-import { MoveHistory } from './ui/MoveHistory';
-import { ChessGame } from './models/ChessGame';
+import { BoardView } from './ui/boardView';
+import { ArrowLayer } from './ui/arrowLayer';
+import { SquareOverlay } from './ui/squareOverlay';
+import { ControlsPanel } from './ui/controlsPanel';
+import { DrillDownView, Position } from './ui/drillDownView';
+import { ProfileEditor } from './ui/profileEditor';
+import { MoveHistory } from './ui/moveHistory';
+import { ChessGame } from './models/chessGame';
 
 interface AppState {
   currentFen: string;

@@ -7,7 +7,6 @@ export class BoardView {
   private container: HTMLElement;
   private squares: HTMLElement[][] = [];
   private selectedSquare: string | null = null;
-  private highlightedSquares: string[] = [];
   private onSquareClickCallback?: (square: string) => void;
 
   constructor(container: HTMLElement) {
