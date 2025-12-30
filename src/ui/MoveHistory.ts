@@ -3,7 +3,7 @@
  * Displays the list of moves in algebraic notation
  */
 
-import { Move } from '../models/ChessGame';
+import { Move } from '../models/chessGame';
 
 export class MoveHistory {
   private container: HTMLElement;
